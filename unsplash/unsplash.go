@@ -31,7 +31,9 @@ import (
 )
 
 type service struct {
-	client *Unsplash
+	client     *Unsplash
+	httpClient *http.Client
+	appID      *string
 }
 
 // Unsplash wraps the entire Unsplash.com API
@@ -66,6 +68,11 @@ func (s *Unsplash) do(req *request) (*Response, error) {
 		return nil,
 			&IllegalArgumentError{ErrString: "Request object cannot be nil"}
 	}
+
+	if s.common.hasAppID() {
+		s.common.setAuthorizationHeader(req.Request)
+	}
+
 	req.Request.Header.Set("Accept-Version", "v1")
 	//Make the request
 	client := s.client
@@ -85,6 +92,19 @@ func (s *Unsplash) do(req *request) (*Response, error) {
 		return nil, err
 	}
 	return resp, nil
+}
+
+// SetAppID set appID to service
+func (s *service) SetAppID(appID *string) {
+	s.appID = appID
+}
+
+func (s *service) hasAppID() bool {
+	return s.appID != nil || len(*s.appID) > 0
+}
+
+func (s *service) setAuthorizationHeader(request *http.Request) {
+	request.Header.Set("Authorization", "Client-ID "+*s.appID)
 }
 
 // CurrentUser returns details about the authenticated user
@@ -174,4 +194,9 @@ func (u *Unsplash) MonthStats() (*MonthStats, *Response, error) {
 			&JSONUnmarshallingError{ErrString: err.Error()}
 	}
 	return monthStats, resp, nil
+}
+
+// SetAppID set appID to all service
+func (u *Unsplash) SetAppID(appID *string) {
+	u.common.SetAppID(appID)
 }

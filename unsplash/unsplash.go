@@ -33,7 +33,7 @@ import (
 type service struct {
 	client     *Unsplash
 	httpClient *http.Client
-	appID      *string
+	appID      string
 }
 
 // Unsplash wraps the entire Unsplash.com API
@@ -95,16 +95,16 @@ func (s *Unsplash) do(req *request) (*Response, error) {
 }
 
 // SetAppID set appID to service
-func (s *service) SetAppID(appID *string) {
+func (s *service) SetAppID(appID string) {
 	s.appID = appID
 }
 
 func (s *service) hasAppID() bool {
-	return s.appID != nil || len(*s.appID) > 0
+	return len(s.appID) > 0
 }
 
 func (s *service) setAuthorizationHeader(request *http.Request) {
-	request.Header.Set("Authorization", "Client-ID "+*s.appID)
+	request.Header.Set("Authorization", "Client-ID "+s.appID)
 }
 
 // CurrentUser returns details about the authenticated user
@@ -197,6 +197,6 @@ func (u *Unsplash) MonthStats() (*MonthStats, *Response, error) {
 }
 
 // SetAppID set appID to all service
-func (u *Unsplash) SetAppID(appID *string) {
+func (u *Unsplash) SetAppID(appID string) {
 	u.common.SetAppID(appID)
 }

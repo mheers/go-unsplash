@@ -103,8 +103,6 @@ Instead, pass an [`http.Client`](https://godoc.org/net/http#Client) that can han
 You can use libraries such as [oauth2](https://godoc.org/golang.org/x/oauth2).<br>
 Please note that all calls will include the OAuth token and hence, [`http.Client`](https://godoc.org/net/http#Client) should not be shared between users.
 
-Note that if you're just using actions that require the public permission scope, only the AppID is required.
-
 ### Creating an instance
 
 An instance of unsplash can be created using `New()`.<br>
@@ -118,6 +116,17 @@ client := oauth2.NewClient(oauth2.NoContext, ts)
 //use the http.Client to instantiate unsplash
 unsplash := unsplash.New(client)  
 // requests can be now made to the API
+randomPhoto, _ , err := unsplash.RandomPhoto(nil)
+```
+
+Or you can use SetAppID method, if you're just using actions that require the public permission scope.
+
+```go
+client := http.DefaultClient
+unsplash := unsplash.New()
+
+unsplash.SetAppID("Client-ID")
+
 randomPhoto, _ , err := unsplash.RandomPhoto(nil)
 ```
 

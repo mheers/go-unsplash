@@ -205,7 +205,7 @@ func TestSetAuthorizationHeader(T *testing.T) {
 	assert := assert.New(T)
 
 	unsplash := simpleSetup()
-	appID := getAppAuth().AppID
+	appID := "" // TODO: set
 	unsplash.SetAppID(appID)
 
 	photos, _, err := unsplash.Photos.Random(&RandomPhotoOpt{SearchQuery: "water", Count: 1})

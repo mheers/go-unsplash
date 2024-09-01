@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-//ExifData for an image
+// ExifData for an image
 type ExifData struct {
 	Make         *string `json:"make"`
 	Model        *string `json:"model"`
@@ -99,7 +99,7 @@ func (p *Photo) String() string {
 	return buf.String()
 }
 
-//PhotoStats shows various stats of the photo returned by /photos/:id/stats endpoint
+// PhotoStats shows various stats of the photo returned by /photos/:id/stats endpoint
 type PhotoStats struct {
 	Downloads int `json:"downloads"`
 	Likes     int `json:"likes"`

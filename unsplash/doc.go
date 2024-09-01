@@ -24,13 +24,13 @@
 /*
 Package unsplash provides a RESTful go binding for https//:unsplash.com API.
 
-
-Usage
+# Usage
 
 Use the following import path:
-    import "github.com/hbagdi/go-unsplash/unsplash"
 
-Authentication
+	import "github.com/hbagdi/go-unsplash/unsplash"
+
+# Authentication
 
 Authentication is not handled by directly by go-unsplash.
 Instead, pass an http.Client
@@ -41,8 +41,7 @@ should not be shared between users.
 Note that if you're just using actions that require the public permission scope,
 only the AppID is required.
 
-
-Creating an instance
+# Creating an instance
 
 An instance of unsplash can be created using New().
 The http.Client supplied will be used to make requests to the API.
@@ -56,7 +55,7 @@ The http.Client supplied will be used to make requests to the API.
 	// requests can be now made to the API
 	randomPhoto, _ , err := unsplash.RandomPhoto(nil)
 
-Error handling
+# Error handling
 
 All API calls return an error as second or third return object.
 All successful calls will return nil in place of this return.
@@ -67,7 +66,7 @@ Further, go-unsplash has errors defined as types for better error handling.
 	  //handle error
 	}
 
-Pagination
+# Pagination
 
 Pagination is supported by supplying a page
 number in the ListOpt.
@@ -89,6 +88,5 @@ The NextPage field in Response can be used to  get the next page number.
 		}
 		searchOpt.Page = resp.NextPage
 	}
-
 */
 package unsplash

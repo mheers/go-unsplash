@@ -88,15 +88,15 @@ func (cs *CollectionsService) Collection(id string) (*Collection, *Response, err
 	return &collection, resp, nil
 }
 
-//CollectionOpt shows various available optional parameters available
-//during creatioin of collection
+// CollectionOpt shows various available optional parameters available
+// during creatioin of collection
 type CollectionOpt struct {
 	Title       *string `url:"title,omitempty"`
 	Description *string `url:"description,omitempty"`
 	Private     *bool   `url:"private,omitempty"`
 }
 
-//Create creates a new collection on the authenticated  user's profile.
+// Create creates a new collection on the authenticated  user's profile.
 func (cs *CollectionsService) Create(opt *CollectionOpt) (*Collection, *Response, error) {
 	if nil == opt {
 		return nil, nil, &IllegalArgumentError{ErrString: "Opt cannot be nil"}
@@ -123,7 +123,7 @@ func (cs *CollectionsService) Create(opt *CollectionOpt) (*Collection, *Response
 	return &collection, resp, nil
 }
 
-//Update updates an existing collection on the authenticated  user's profile.
+// Update updates an existing collection on the authenticated  user's profile.
 func (cs *CollectionsService) Update(collectionID int, opt *CollectionOpt) (*Collection, *Response, error) {
 	if nil == opt {
 		return nil, nil, &IllegalArgumentError{ErrString: "Opt cannot be nil"}
@@ -148,7 +148,7 @@ func (cs *CollectionsService) Update(collectionID int, opt *CollectionOpt) (*Col
 	return &collection, resp, nil
 }
 
-//Delete deletes a collection on the authenticated user's profile.
+// Delete deletes a collection on the authenticated user's profile.
 func (cs *CollectionsService) Delete(collectionID int) (*Response, error) {
 	if collectionID == 0 {
 		return nil, &IllegalArgumentError{ErrString: "CollectionID cannot be empty or zero."}
@@ -172,7 +172,7 @@ type addPhoto struct {
 	Photo string `url:"photo_id"`
 }
 
-//AddPhoto adds a photo to a collection owned by an authenticated user.
+// AddPhoto adds a photo to a collection owned by an authenticated user.
 func (cs *CollectionsService) AddPhoto(collectionID int, photoID string) (*Response, error) {
 	if collectionID == 0 {
 		return nil, &IllegalArgumentError{ErrString: "CollectionID cannot be empty or zero."}
@@ -196,7 +196,7 @@ func (cs *CollectionsService) AddPhoto(collectionID int, photoID string) (*Respo
 	return resp, nil
 }
 
-//RemovePhoto removes a photo from a collection owned by an authenticated user.
+// RemovePhoto removes a photo from a collection owned by an authenticated user.
 func (cs *CollectionsService) RemovePhoto(collectionID int, photoID string) (*Response, error) {
 	if collectionID == 0 {
 		return nil, &IllegalArgumentError{ErrString: "CollectionID cannot be empty or zero."}

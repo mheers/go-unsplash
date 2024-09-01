@@ -23,7 +23,7 @@
 
 package unsplash
 
-//These are permission scopes for the Unsplash API for OAuth.
+// These are permission scopes for the Unsplash API for OAuth.
 const (
 	//Public is default; gives access to read public data.
 	Public = "public"

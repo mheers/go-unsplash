@@ -28,7 +28,7 @@ import (
 	"strconv"
 )
 
-//These constants should be used for OrderBy searches/results.
+// These constants should be used for OrderBy searches/results.
 const (
 	Latest  = "latest"
 	Oldest  = "oldest"

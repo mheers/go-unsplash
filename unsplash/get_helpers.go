@@ -50,7 +50,7 @@ func (s *service) getPhotos(opt *ListOpt, endpoint string) (*[]Photo, *Response,
 }
 
 // getCollections can be used to query any endpoint which
-//returns an array of Collections
+// returns an array of Collections
 func (s *service) getCollections(opt *ListOpt, endpoint string) (*[]Collection, *Response, error) {
 	if nil == opt {
 		opt = defaultListOpt

@@ -47,6 +47,7 @@ type Tag struct {
 // Photo represents a photo on unsplash.com
 type Photo struct {
 	ID             *string    `json:"id"`
+	Source         *string    `json:"source"`
 	CreatedAt      *time.Time `json:"created_at"`
 	UpdatedAt      *time.Time `json:"updated_at"`
 	Width          *int       `json:"width"`
